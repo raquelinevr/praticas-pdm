@@ -1,4 +1,5 @@
 //package br.ifpb.pdm.praticas
+// implementados o listar e o editar. 
 
 class Livro(var titulo: String, var preco: Float) {
     override fun toString(): String {
