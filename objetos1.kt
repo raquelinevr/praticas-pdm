@@ -78,3 +78,73 @@ fun main() {
 
 
 // questao 4 
+
+interface FormaGeometrica {
+    fun calcularArea(): Double
+}
+
+class Retangulo(val altura: Double, val largura: Double) : FormaGeometrica {
+    override fun calcularArea(): Double {
+        return altura * largura
+    }
+}
+
+class Circulo(val raio: Double) : FormaGeometrica {
+     override fun calcularArea(): Double {
+        return Math.PI * raio * raio
+    }
+}
+
+fun main() {
+    val retangulo = Retangulo(5.0, 3.0)
+    val circulo = Circulo(2.0)
+
+    val areaRetangulo = retangulo.calcularArea()
+    val areaCirculo = circulo.calcularArea()
+
+    println("Área do Retângulo: $areaRetangulo")
+    println("Área do Círculo: $areaCirculo")
+}
+
+
+// questao 5
+
+class ContaBancaria {
+    var numeroConta: String = ""
+    var nomeTitular: String = ""
+    private var saldo: Double = 0.0
+    init {
+        this.nomeTitular = this.nomeTitular.capitalize()
+    }
+    constructor(numeroConta: String, nomeTitular: String, saldo: Double) {
+        this.numeroConta = numeroConta
+        this.nomeTitular = nomeTitular.capitalize()
+        this.saldo = saldo
+    }
+
+    fun mostrarSaldo() {
+        println("Saldo: $saldo")
+    }
+    fun getSaldo(): Double {
+        return this.saldo
+    }
+    fun setSaldo(valor: Double): Unit{
+        if(saldo <= 0 && (saldo - valor < 0)){
+            throw  IllegalArgumentException("Saldo in suficiente")
+        }
+        saldo -= valor
+    }
+    fun mostrarNome(){
+        println("Oi, $nomeTitular seu saldo é $saldo" )
+    }
+    override fun toString(): String {
+        return "ContaBancaria(numeroConta='$numeroConta', nomeTitular='$nomeTitular', saldo=$saldo)"
+    }
+
+}
+
+fun main(){
+    val contaRaq = ContaBancaria("213123","Raqueline",21.90)
+
+    contaRaq.mostrarNome()
+}
